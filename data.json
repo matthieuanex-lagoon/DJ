@@ -71,7 +71,15 @@
       "amt": 1100.21,
       "by": "Dr Morvan",
       "date": "2026-10-07"
+    },
+    {
+      "id": "emuyafohw458",
+      "label": "Webcam",
+      "cat": "💻 Informatique",
+      "amt": 33.24,
+      "by": "SCM",
+      "date": "2026-10-07"
     }
   ],
-  "t": 1791386476753
+  "t": 1791388457925
 }
