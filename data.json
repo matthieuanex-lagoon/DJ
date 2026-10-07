@@ -54,7 +54,15 @@
       "amt": 758.21,
       "by": "SCM",
       "date": "2026-10-07"
+    },
+    {
+      "id": "emuy7nx1n668",
+      "label": "Fournitures à usage unique",
+      "cat": "📦 Logistique",
+      "amt": 1100.21,
+      "by": "Dr Morvan",
+      "date": "2026-10-07"
     }
   ],
-  "t": 1791383703079
+  "t": 1791383803406
 }
