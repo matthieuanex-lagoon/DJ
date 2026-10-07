@@ -29,7 +29,13 @@
     "c3": "2026-10-07",
     "c6": "2026-10-07"
   },
-  "c": [],
+  "c": [
+    {
+      "id": "xmuy92mq5647",
+      "sec": "bureau",
+      "label": "Changement de place de la table haute de la cuisine"
+    }
+  ],
   "e": [
     {
       "id": "emuxx1xkp577",
@@ -64,5 +70,5 @@
       "date": "2026-10-07"
     }
   ],
-  "t": 1791383803406
+  "t": 1791386169487
 }
