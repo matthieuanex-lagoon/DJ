@@ -80,7 +80,15 @@
       "amt": 33.24,
       "by": "SCM",
       "date": "2026-10-07"
+    },
+    {
+      "id": "emuyhrxlu887",
+      "label": "Imprimante",
+      "cat": "💻 Informatique",
+      "amt": 220,
+      "by": "Dr Morvan",
+      "date": "2026-10-07"
     }
   ],
-  "t": 1791400743831
+  "t": 1791400786916
 }
