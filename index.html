@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Roadmap – Arrivée du Dr Junior Lucie</title>
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#f5f6f8; --card:#ffffff; --text:#1c2230; --muted:#6b7385; --line:#e3e6ec;
+  --todo-bg:#eef0f4; --todo-fg:#7b8397;
+  --doing:#f59e0b; --doing-bg:#fff4dc; --doing-fg:#9a5b00;
+  --done:#16a34a; --done-bg:#e3f6ea; --done-fg:#0f6b31;
+  --accent:#2563eb;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#12151c; --card:#1b2029; --text:#e8ebf2; --muted:#9aa3b5; --line:#2a303d;
+    --todo-bg:#262c38; --todo-fg:#8d96a9;
+    --doing-bg:#3a2a0a; --doing-fg:#fbbf5a;
+    --done-bg:#0f2f1d; --done-fg:#5fd48c;
+    --accent:#6ea0ff;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12151c; --card:#1b2029; --text:#e8ebf2; --muted:#9aa3b5; --line:#2a303d;
+  --todo-bg:#262c38; --todo-fg:#8d96a9;
+  --doing-bg:#3a2a0a; --doing-fg:#fbbf5a;
+  --done-bg:#0f2f1d; --done-fg:#5fd48c;
+  --accent:#6ea0ff;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.4}
+.wrap{max-width:760px;margin:0 auto;padding:20px 16px 48px}
+header h1{font-size:1.45rem;margin:0 0 4px}
+header .sub{color:var(--muted);font-size:.92rem}
+.hero{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+.stat{flex:1 1 140px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.stat b{display:block;font-size:1.5rem}
+.stat span{color:var(--muted);font-size:.82rem}
+.bar{height:10px;border-radius:99px;background:var(--todo-bg);overflow:hidden;margin:6px 0 18px}
+.bar i{display:block;height:100%;width:0;background:var(--done);transition:width .3s}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-bottom:14px}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.legend .l0::before{background:var(--todo-fg)}
+.legend .l1::before{background:var(--doing)}
+.legend .l2::before{background:var(--done)}
+section{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:14px;overflow:hidden}
+section h2{margin:0;padding:12px 16px;font-size:1rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
+section h2 small{font-weight:500;color:var(--muted);font-size:.8rem}
+.row{display:flex;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--line);cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none}
+.row:last-child{border-bottom:0}
+.dot{flex:0 0 30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:.95rem;font-weight:700;background:var(--todo-bg);color:var(--todo-fg);transition:background .15s}
+.label{flex:1;min-width:0;font-size:.95rem}
+.label small{display:block;color:var(--muted);font-size:.76rem}
+.row[data-s="1"] .dot{background:var(--doing);color:#fff}
+.row[data-s="1"] .label{color:var(--doing-fg);font-weight:600}
+.row[data-s="1"]{background:var(--doing-bg)}
+.row[data-s="2"] .dot{background:var(--done);color:#fff}
+.row[data-s="2"] .label{color:var(--done-fg);font-weight:600}
+.row[data-s="2"]{background:var(--done-bg)}
+.row input[type=date]{font:inherit;font-size:.8rem;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:4px 6px;max-width:132px}
+.del{border:0;background:transparent;color:var(--muted);font-size:1rem;cursor:pointer;padding:4px 6px;border-radius:8px}
+.del:hover{color:#dc2626}
+.add{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin:16px 0}
+.add h3{margin:0 0 10px;font-size:.95rem}
+.add .f{display:flex;gap:8px;flex-wrap:wrap}
+.add input[type=text],.add select{font:inherit;font-size:.92rem;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 10px}
+.add input[type=text]{flex:1 1 220px;min-width:0}
+.add select{flex:0 1 190px}
+.add button{font:inherit;font-weight:600;border:0;border-radius:10px;padding:9px 16px;background:var(--accent);color:#fff;cursor:pointer}
+.tabs{display:flex;gap:8px;margin:14px 0 4px}
+.tab{font:inherit;font-weight:600;font-size:.92rem;border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:10px;padding:8px 14px;cursor:pointer}
+.tab.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.dep-row{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--line)}
+.dep-row:last-child{border-bottom:0}
+.dep-main{flex:1;min-width:0}
+.dep-main b{display:block;font-size:.95rem;font-weight:600}
+.dep-main small{color:var(--muted);font-size:.76rem}
+.dep-amt{font-weight:700;white-space:nowrap}
+.tag{font-size:.72rem;font-weight:700;border-radius:99px;padding:3px 9px;background:var(--todo-bg);color:var(--text);white-space:nowrap}
+.tag.scm{background:var(--doing-bg);color:var(--doing-fg)}
+.tag.mor{background:var(--done-bg);color:var(--done-fg)}
+.empty{padding:16px;color:var(--muted);font-size:.9rem}
+.add input[type=number],.add input[type=date]{font:inherit;font-size:.92rem;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 10px;flex:0 1 130px;min-width:0}
+.note{color:var(--muted);font-size:.78rem;margin-top:18px}
+.sync{font-size:.75rem;color:var(--muted);text-align:right;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🩺 Arrivée du Dr Junior Lucie</h1>
+    <div class="sub">Roadmap de préparation · arrivée prévue le <b>lundi 2 novembre 2026</b></div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab on" id="tabBtnRoad" type="button">🗺️ Roadmap</button>
+    <button class="tab" id="tabBtnDep" type="button">💶 Dépenses</button>
+  </div>
+
+  <div id="viewRoad">
+  <div class="hero">
+    <div class="stat"><b id="days">–</b><span id="daysLbl">jours avant l'arrivée</span></div>
+    <div class="stat"><b id="pct">0 %</b><span id="count">0 / 0 tâches faites</span></div>
+  </div>
+  <div class="bar"><i id="bar"></i></div>
+
+  <div class="legend">
+    <span class="l0">À faire</span><span class="l1">En cours</span><span class="l2">Fait</span>
+    <span style="margin-left:auto">Touchez une ligne pour changer son statut</span>
+  </div>
+
+  <main id="app"></main>
+
+  <div class="add">
+    <h3>➕ Ajouter une ligne</h3>
+    <div class="f">
+      <input type="text" id="newLabel" placeholder="Intitulé de la tâche" maxlength="120">
+      <select id="newSec" aria-label="Catégorie"></select>
+      <button id="newBtn" type="button">Ajouter</button>
+    </div>
+  </div>
+  <div class="note">Cycle au clic : À faire → En cours (orange) → Fait (vert) → À faire. Les dates sont modifiables ligne par ligne.</div>
+  </div>
+
+  <div id="viewDep" style="display:none">
+    <div class="hero" id="depStats"></div>
+    <div class="add">
+      <h3>➕ Enregistrer une dépense</h3>
+      <div class="f">
+        <input type="text" id="depLabel" placeholder="Nom de la dépense" maxlength="120">
+        <select id="depCat" aria-label="Catégorie"></select>
+        <input type="number" id="depAmt" placeholder="Montant (€)" inputmode="decimal" step="0.01" min="0">
+        <select id="depBy" aria-label="Payé par">
+          <option value="SCM">Payé par la SCM</option>
+          <option value="Dr Morvan">Payé par le Dr Morvan</option>
+        </select>
+        <input type="date" id="depDate" aria-label="Date">
+        <button id="depBtn" type="button">Ajouter</button>
+      </div>
+    </div>
+    <section id="depList"></section>
+    <div id="depCats"></div>
+  </div>
+  <div class="sync" id="sync"></div>
+</div>
+
+<script>
+var ARRIVEE = "2026-11-02";
+var SECTIONS = [
+  {id:"bureau", titre:"🪑 Aménagement du bureau", items:[
+    ["b1","Commande des meubles"],
+    ["b2","Commande du plan de travail"],
+    ["b3","Installation des meubles"],
+    ["b4","Installation du plan de travail"]
+  ]},
+  {id:"logi", titre:"📦 Logistique", items:[
+    ["l1","Commande du matériel et des fournitures médicales"],
+    ["l2","Mise en place du matériel médical"]
+  ]},
+  {id:"info", titre:"💻 Informatique", items:[
+    ["i1","Commande du PC"],
+    ["i2","Réception du PC"],
+    ["i3","Installation du PC"],
+    ["i4","Installation Windows 11 du PC du Dr Junior"],
+    ["i5","Commande du boîtier de carte Vitale"],
+    ["i6","Installation du boîtier de carte Vitale"],
+    ["i14","Commande de l'imprimante"],
+    ["i7","Installation et paramétrage de l'imprimante"],
+    ["i8","Installation du switch"],
+    ["i9","Paramétrage réseau"],
+    ["i10","Paramétrage de la webcam"],
+    ["i11","Installation et paramétrage du système de chat interne"],
+    ["i12","Commande de l'onduleur"],
+    ["i13","Installation de l'onduleur"]
+  ]},
+  {id:"com", titre:"📞 Communication", items:[
+    ["c1","Commande du téléphone"],
+    ["c2","Réception du téléphone"],
+    ["c3","Mise en place de la ligne"],
+    ["c4","Paramétrage du téléphone et de la ligne"],
+    ["c5","Paramétrage du site internet du cabinet"],
+    ["c6","Préparation et commande des cartes de rendez-vous"]
+  ]},
+  {id:"soft", titre:"🧩 Logiciel", items:[
+    ["s1","Installation XMed"],
+    ["s2","Paramétrage XMed pour le Dr Junior"],
+    ["s3","Installation et paramétrage de Stellair pour le Dr Junior"],
+    ["s4","Commande de l'agenda électronique"],
+    ["s5","Paramétrage de l'agenda électronique"],
+    ["s6","Ouverture de l'agenda électronique","prévue 15 jours avant l'arrivée","2026-10-18"],
+    ["s9","Installation et paramétrage du système de visio"]
+  ]},
+  {id:"form", titre:"🎓 Formation", items:[
+    ["f1","Formation de Lucie à XMed"],
+    ["f2","Formation de Lucie à Stellair"],
+    ["f3","Formation à l'outil Cabinet"]
+  ]},
+  {id:"reu", titre:"🤝 Réunion", items:[
+    ["r1","Réunion de concertation","","2026-10-16"]
+  ]}
+];
+var ALL = [];
+SECTIONS.forEach(function(sec){ sec.items.forEach(function(it){ if(it[3]) {} ALL.push(it); }); });
+function itemsOf(sec){
+  var out = sec.items.slice();
+  (state.c || []).forEach(function(c){ if(c.sec === sec.id) out.push([c.id, c.label, "", "", true]); });
+  return out;
+}
+function totalCount(){ var n = 0; SECTIONS.forEach(function(sec){ n += itemsOf(sec).length; }); return n; }
+
+var state = {s:{}, d:{}, c:[], e:[], t:0};
+ALL.forEach(function(it){ if(it[3]) state.d[it[0]] = it[3]; });
+var STORE_KEY = "roadmap-lucie-v1";
+var docRef = null;
+var mode = "local";
+var applyingRemote = false;
+
+var ICON = ["", "…", "✓"];
+function esc(t){ return String(t).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+
+function dayDiff(){
+  var a = new Date(ARRIVEE + "T00:00:00");
+  var n = new Date(); n.setHours(0,0,0,0);
+  return Math.round((a - n) / 86400000);
+}
+
+function render(){
+  var app = document.getElementById("app");
+  var html = "";
+  var done = 0;
+  SECTIONS.forEach(function(sec){
+    var sd = 0;
+    var list = itemsOf(sec);
+    var rows = list.map(function(it){
+      var st = state.s[it[0]] || 0;
+      if(st === 2){ sd++; done++; }
+      var dt = state.d[it[0]] || "";
+      return '<div class="row" data-id="'+it[0]+'" data-s="'+st+'">' +
+        '<div class="dot">'+ICON[st]+'</div>' +
+        '<div class="label">'+esc(it[1])+(it[2]?'<small>'+esc(it[2])+'</small>':'')+'</div>' +
+        '<input type="date" value="'+dt+'" aria-label="Date prévue">' +
+        (it[4] ? '<button class="del" aria-label="Supprimer cette ligne" title="Supprimer">✕</button>' : '') +
+      '</div>';
+    }).join("");
+    html += '<section><h2>'+sec.titre+'<small>'+sd+' / '+list.length+'</small></h2>'+rows+'</section>';
+  });
+  app.innerHTML = html;
+  var total = totalCount();
+  var pct = total ? Math.round(done*100/total) : 0;
+  document.getElementById("pct").textContent = pct + " %";
+  document.getElementById("count").textContent = done + " / " + total + " tâches faites";
+  document.getElementById("bar").style.width = pct + "%";
+  var dd = dayDiff();
+  var dEl = document.getElementById("days"), lEl = document.getElementById("daysLbl");
+  if(dd > 0){ dEl.textContent = dd; lEl.textContent = dd > 1 ? "jours avant l'arrivée" : "jour avant l'arrivée"; }
+  else if(dd === 0){ dEl.textContent = "Jour J"; lEl.textContent = "Bienvenue Lucie !"; }
+  else { dEl.textContent = "✔"; lEl.textContent = "Lucie est arrivée"; }
+}
+
+function persist(){
+  state.t = Date.now();
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){}
+  if(mode === "backend") schedulePush();
+  if(docRef){
+    docRef.set({s:state.s, d:state.d, c:state.c, e:state.e, t:state.t}).catch(function(){
+      document.getElementById("sync").textContent = "Synchronisation indisponible : sauvegarde locale uniquement.";
+    });
+  }
+}
+
+document.getElementById("app").addEventListener("click", function(e){
+  var el = e.target && e.target.nodeType === 1 ? e.target : (e.target && e.target.parentElement);
+  if(!el || el.tagName === "INPUT") return;
+  var row = el.closest(".row");
+  if(!row) return;
+  var id = row.getAttribute("data-id");
+  if(el.classList.contains("del")){
+    state.c = (state.c || []).filter(function(c){ return c.id !== id; });
+    delete state.s[id]; delete state.d[id];
+    render(); persist();
+    return;
+  }
+  state.s[id] = ((state.s[id] || 0) + 1) % 3;
+  render(); persist();
+});
+document.getElementById("app").addEventListener("change", function(e){
+  if(e.target.tagName !== "INPUT") return;
+  var row = e.target.closest(".row");
+  state.d[row.getAttribute("data-id")] = e.target.value;
+  persist();
+});
+
+var selEl = document.getElementById("newSec");
+SECTIONS.forEach(function(sec){
+  var o = document.createElement("option");
+  o.value = sec.id; o.textContent = sec.titre;
+  selEl.appendChild(o);
+});
+function addItem(){
+  var inp = document.getElementById("newLabel");
+  var label = inp.value.trim();
+  if(!label) { inp.focus(); return; }
+  state.c = state.c || [];
+  state.c.push({id:"x" + Date.now().toString(36) + Math.floor(Math.random()*1000), sec:selEl.value, label:label});
+  inp.value = "";
+  render(); persist();
+}
+document.getElementById("newBtn").addEventListener("click", addItem);
+document.getElementById("newLabel").addEventListener("keydown", function(e){ if(e.key === "Enter"){ e.preventDefault(); addItem(); } });
+
+var DEP_CATS = SECTIONS.map(function(x){ return x.titre; }).concat(["📋 Autre"]);
+var depCatEl = document.getElementById("depCat");
+DEP_CATS.forEach(function(c){ var o = document.createElement("option"); o.value = c; o.textContent = c; depCatEl.appendChild(o); });
+function today(){ var n = new Date(); return n.getFullYear()+"-"+String(n.getMonth()+1).padStart(2,"0")+"-"+String(n.getDate()).padStart(2,"0"); }
+document.getElementById("depDate").value = today();
+function eur(n){ return (n||0).toLocaleString("fr-FR",{style:"currency",currency:"EUR"}); }
+function fdate(d){ if(!d) return ""; var p = d.split("-"); return p.length === 3 ? p[2]+"/"+p[1]+"/"+p[0] : d; }
+
+function renderDep(){
+  var list = state.e || [];
+  var tot = 0, scm = 0, mor = 0, byCat = {};
+  list.forEach(function(x){
+    tot += x.amt;
+    if(x.by === "SCM") scm += x.amt; else mor += x.amt;
+    byCat[x.cat] = (byCat[x.cat] || 0) + x.amt;
+  });
+  document.getElementById("depStats").innerHTML =
+    '<div class="stat"><b>'+eur(tot)+'</b><span>Total des dépenses</span></div>'+
+    '<div class="stat"><b>'+eur(scm)+'</b><span>Payé par la SCM</span></div>'+
+    '<div class="stat"><b>'+eur(mor)+'</b><span>Payé par le Dr Morvan</span></div>';
+  var rows = list.slice().sort(function(a,b){ return (b.date||"").localeCompare(a.date||""); }).map(function(x){
+    return '<div class="dep-row" data-id="'+esc(x.id)+'">'+
+      '<div class="dep-main"><b>'+esc(x.label)+'</b><small>'+esc(x.cat)+(x.date?' · '+fdate(x.date):'')+'</small></div>'+
+      '<span class="tag '+(x.by==="SCM"?"scm":"mor")+'">'+esc(x.by)+'</span>'+
+      '<span class="dep-amt">'+eur(x.amt)+'</span>'+
+      '<button class="del" aria-label="Supprimer cette dépense" title="Supprimer">✕</button></div>';
+  }).join("");
+  document.getElementById("depList").innerHTML =
+    '<h2>Dépenses enregistrées<small>'+list.length+'</small></h2>' + (rows || '<div class="empty">Aucune dépense enregistrée pour le moment.</div>');
+  var cats = Object.keys(byCat).map(function(c){
+    return '<div class="dep-row"><div class="dep-main"><b>'+esc(c)+'</b></div><span class="dep-amt">'+eur(byCat[c])+'</span></div>';
+  }).join("");
+  document.getElementById("depCats").innerHTML = cats ? '<section style="margin-top:14px"><h2>Total par catégorie</h2>'+cats+'</section>' : '';
+}
+function addDep(){
+  var l = document.getElementById("depLabel");
+  var label = l.value.trim();
+  var amt = parseFloat(String(document.getElementById("depAmt").value).replace(",","."));
+  if(!label){ l.focus(); return; }
+  if(isNaN(amt) || amt < 0){ document.getElementById("depAmt").focus(); return; }
+  state.e = state.e || [];
+  state.e.push({id:"e"+Date.now().toString(36)+Math.floor(Math.random()*1000), label:label, cat:depCatEl.value, amt:Math.round(amt*100)/100, by:document.getElementById("depBy").value, date:document.getElementById("depDate").value});
+  l.value = ""; document.getElementById("depAmt").value = "";
+  renderDep(); persist();
+}
+document.getElementById("depBtn").addEventListener("click", addDep);
+document.getElementById("depLabel").addEventListener("keydown", function(e){ if(e.key === "Enter"){ e.preventDefault(); addDep(); } });
+document.getElementById("depList").addEventListener("click", function(e){
+  var el = e.target && e.target.nodeType === 1 ? e.target : null;
+  if(!el || !el.classList.contains("del")) return;
+  var row = el.closest(".dep-row"); if(!row) return;
+  var id = row.getAttribute("data-id");
+  state.e = (state.e || []).filter(function(x){ return x.id !== id; });
+  renderDep(); persist();
+});
+function showTab(t){
+  document.getElementById("viewRoad").style.display = t === "road" ? "" : "none";
+  document.getElementById("viewDep").style.display = t === "dep" ? "" : "none";
+  document.getElementById("tabBtnRoad").classList.toggle("on", t === "road");
+  document.getElementById("tabBtnDep").classList.toggle("on", t === "dep");
+  if(t === "dep") renderDep();
+}
+document.getElementById("tabBtnRoad").addEventListener("click", function(){ showTab("road"); });
+document.getElementById("tabBtnDep").addEventListener("click", function(){ showTab("dep"); });
+
+// Chargement local
+try{
+  var raw = localStorage.getItem(STORE_KEY);
+  if(raw){ var p = JSON.parse(raw); state.s = p.s || {}; state.d = Object.assign(state.d, p.d || {}); state.t = p.t || 0; state.c = p.c || []; state.e = p.e || []; }
+}catch(e){}
+render(); renderDep();
+
+// Synchronisation partagée (optionnelle)
+(async function(){
+  try{
+    if(!window.claude || !claude.use) return;
+    var db = await claude.use("db");
+    if(!db) return;
+    docRef = db.doc("roadmap/lucie");
+    mode = "shared";
+    docRef.onSnapshot(function(snap){
+      if(snap.exists){
+        var d = snap.data() || {};
+        var rt = d.t || 0;
+        if(rt > state.t){
+          state.s = d.s || {};
+          state.c = d.c || [];
+          state.e = d.e || [];
+          state.d = Object.assign({}, state.d, d.d || {});
+          state.t = rt;
+          render(); renderDep();
+          try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){}
+        } else if(state.t > rt){
+          docRef.set({s:state.s, d:state.d, c:state.c, e:state.e, t:state.t}).catch(function(){});
+        }
+      } else {
+        docRef.set({s:state.s, d:state.d, c:state.c, e:state.e, t:state.t}).catch(function(){});
+      }
+      document.getElementById("sync").textContent = "Synchronisé";
+    }, function(){
+      docRef = null;
+      document.getElementById("sync").textContent = "";
+    });
+  }catch(e){ docRef = null; }
+})();
+
+// ---- Enregistrement GitHub via le service (hors Claude) ----
+var BACKEND = "api.php";
+var KEY_STORE = "roadmap-lucie-key";
+var pushTimer = null;
+function getKey(ask){
+  var k = ""; try{ k = localStorage.getItem(KEY_STORE) || ""; }catch(e){}
+  if(!k && ask){
+    k = (prompt("Clé d'accès à l'enregistrement :") || "").trim();
+    if(k){ try{ localStorage.setItem(KEY_STORE, k); }catch(e){} }
+  }
+  return k;
+}
+function setSync(t){ document.getElementById("sync").textContent = t; }
+function applyRemote(d){
+  state.s = d.s || {}; state.c = d.c || []; state.e = d.e || [];
+  state.d = Object.assign({}, state.d, d.d || {});
+  state.t = d.t || 0;
+  render(); renderDep();
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){}
+}
+var firstPull = true;
+async function call(payload){
+  var r = await fetch(BACKEND, {method: "POST", headers: {"Content-Type": "text/plain"}, body: JSON.stringify(payload)});
+  var txt = await r.text(), j = null;
+  try{ j = JSON.parse(txt); }catch(e){}
+  return {status: r.status, json: j, text: txt};
+}
+function errMsg(res){
+  if(res.json && res.json.error) return res.json.error;
+  return "réponse inattendue du serveur (code " + res.status + ") : " + res.text.slice(0, 80).replace(/\s+/g, " ");
+}
+async function pull(){
+  var key = getKey(firstPull); firstPull = false;
+  if(!key){ setSync("Mode local (clé d'accès non saisie)"); return; }
+  try{
+    var res = await call({key: key, action: "get"});
+    if(res.status === 401){ try{ localStorage.removeItem(KEY_STORE); }catch(e){} setSync("Clé refusée : rechargez la page et saisissez la bonne clé"); return; }
+    if(res.status !== 200 || !res.json || typeof res.json.t === "undefined"){ setSync("Erreur serveur : " + errMsg(res)); return; }
+    var d = res.json;
+    if((d.t || 0) > state.t) applyRemote(d);
+    else if(state.t > (d.t || 0)) schedulePush();
+    setSync("Enregistré sur le serveur");
+  }catch(e){ setSync("Serveur injoignable : " + e.message); }
+}
+function schedulePush(){
+  clearTimeout(pushTimer);
+  pushTimer = setTimeout(push, 1000);
+}
+async function push(){
+  var key = getKey(false); if(!key){ setSync("Clé d'accès manquante : rechargez la page"); return; }
+  try{
+    var res = await call({key: key, action: "put", data: {s:state.s, d:state.d, c:state.c, e:state.e, t:state.t}});
+    if(res.status === 409){ applyRemote(res.json); setSync("Version du serveur plus récente chargée"); return; }
+    if(res.status !== 200 || !res.json || !res.json.ok){ setSync("Échec de l'enregistrement : " + errMsg(res)); return; }
+    setSync("Enregistré sur le serveur");
+  }catch(e){ setSync("Échec de l'enregistrement : " + e.message); }
+}
+if(!(window.claude && claude.use) && BACKEND.indexOf("REMPLACER") === -1){
+  mode = "backend";
+  pull();
+  setInterval(pull, 30000);
+}
+</script>
+</body>
+</html>
