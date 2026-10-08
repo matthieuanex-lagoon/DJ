@@ -82,7 +82,15 @@
       "amt": 33.24,
       "by": "SCM",
       "date": "2026-10-07"
+    },
+    {
+      "id": "emuzidhhm979",
+      "label": "Imprimante",
+      "cat": "💻 Informatique",
+      "amt": 224.95,
+      "by": "Dr Morvan",
+      "date": "2026-10-07"
     }
   ],
-  "t": 1791462237988
+  "t": 1791462258635
 }
