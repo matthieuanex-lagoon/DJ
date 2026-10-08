@@ -90,7 +90,15 @@
       "amt": 224.95,
       "by": "Dr Morvan",
       "date": "2026-10-07"
+    },
+    {
+      "id": "emuzytikw978",
+      "label": "Matériel médical",
+      "cat": "🪑 Aménagement du bureau",
+      "amt": 247.52,
+      "by": "SCM",
+      "date": "2026-10-08"
     }
   ],
-  "t": 1791462258635
+  "t": 1791489880402
 }
