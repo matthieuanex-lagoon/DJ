@@ -98,7 +98,15 @@
       "amt": 247.52,
       "by": "SCM",
       "date": "2026-10-08"
+    },
+    {
+      "id": "emv13n80g219",
+      "label": "Divers matériel",
+      "cat": "🪑 Aménagement du bureau",
+      "amt": 101.62,
+      "by": "Dr Morvan",
+      "date": "2026-10-09"
     }
   ],
-  "t": 1791492597426
+  "t": 1791558451025
 }
