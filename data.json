@@ -106,7 +106,15 @@
       "amt": 101.62,
       "by": "Dr Morvan",
       "date": "2026-10-09"
+    },
+    {
+      "id": "emv14bd22174",
+      "label": "Matériel médical",
+      "cat": "🪑 Aménagement du bureau",
+      "amt": 98.18,
+      "by": "SCM",
+      "date": "2026-10-09"
     }
   ],
-  "t": 1791558451025
+  "t": 1791559577308
 }
