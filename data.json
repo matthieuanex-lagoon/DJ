@@ -137,7 +137,15 @@
       "amt": 19.95,
       "by": "Dr Morvan",
       "date": "2026-10-20"
+    },
+    {
+      "id": "emvg9drlh723",
+      "label": "Matériel médical",
+      "cat": "📦 Logistique",
+      "amt": 59.6,
+      "by": "Dr Morvan",
+      "date": "2026-10-20"
     }
   ],
-  "t": 1792474901531
+  "t": 1792475080182
 }
