@@ -129,7 +129,15 @@
       "amt": 98.18,
       "by": "SCM",
       "date": "2026-10-09"
+    },
+    {
+      "id": "emvg99xqx328",
+      "label": "Matériel médical",
+      "cat": "📦 Logistique",
+      "amt": 19.95,
+      "by": "Dr Morvan",
+      "date": "2026-10-20"
     }
   ],
-  "t": 1792474861855
+  "t": 1792474901531
 }
